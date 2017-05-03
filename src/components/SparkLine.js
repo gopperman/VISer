@@ -91,7 +91,10 @@ class SparkLine extends Component {
 
 	render() {
 		return (
-			<div className="sparkline graph" id="sparkline"></div>
+			<div className = "graph__container">
+				<div className="sparkline graph" id="sparkline"></div>
+				<h2>OK, let's export this baby</h2>
+			</div>
 		)
 	}
 }

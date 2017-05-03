@@ -37,7 +37,8 @@ class App extends Component {
       <div className="App">
         <Header />
         <div className="container">
-          <p>All right, let's make some charts. Paste your date into this handy-dandy box, seperated by commas:</p>
+          <h2>Let's make some charts.</h2>
+          <p>Paste your date into this handy-dandy box, seperated by commas:</p>
           <textarea id="data-input" onChange={this.textAreaUpdate}>{this.state.rawData}</textarea>
 	        <SparkLine data={this.state.parsedData} />
         </div>
