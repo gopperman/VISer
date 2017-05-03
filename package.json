@@ -6,6 +6,7 @@
   "devDependencies": {
     "d3": "^4.8.0",
     "gh-pages": "^0.12.0",
+    "lodash": "^4.17.4",
     "node-sass": "^4.5.2",
     "npm-run-all": "^4.0.2",
     "react-scripts": "0.9.5"
