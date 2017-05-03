@@ -4,6 +4,7 @@ import _ from 'lodash'
 import { timeScale, verticalScale } from '../util/scales'
 import { getWidth, dimensions } from '../util/dimensions'
 import { slashedTime } from '../util/time'
+import { exportSVG } from '../util/dom'
 
 class SparkLine extends Component {
 
@@ -81,19 +82,19 @@ class SparkLine extends Component {
 		if (prevProps.data !== this.props.data) {
 			document.getElementById('sparkline').innerHTML = ''
 			this.draw('#sparkline', this.props.data)
-		}
-		//this.draw('#sparkline', this.props.data)	
+			exportSVG('sparkline', 'export__textarea')
+		}	
 	}
 
 	componentDidMount() {
 		this.draw('#sparkline', this.props.data)
+		exportSVG('sparkline', 'export__textarea')
 	}
 
 	render() {
 		return (
-			<div className = "graph__container">
+			<div className="graph__container">
 				<div className="sparkline graph" id="sparkline"></div>
-				<h2>OK, let's export this baby</h2>
 			</div>
 		)
 	}

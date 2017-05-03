@@ -1,8 +1,9 @@
 import './App.css';
-import React, { Component } from 'react';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import SparkLine from './components/SparkLine';
+import React, { Component } from 'react'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import SparkLine from './components/SparkLine'
+import Export from './components/Export'
 import { csvToArray } from './util/dataManipulation'
 
 class App extends Component {
@@ -41,6 +42,7 @@ class App extends Component {
           <p>Paste your date into this handy-dandy box, seperated by commas:</p>
           <textarea id="data-input" onChange={this.textAreaUpdate}>{this.state.rawData}</textarea>
 	        <SparkLine data={this.state.parsedData} />
+          <Export />
         </div>
         <Footer />
       </div>
