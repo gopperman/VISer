@@ -2,27 +2,55 @@
 @import 'styles/layout.scss';
 @import 'styles/inputs.scss';
 
-.App {
+.app {
   text-align: center;
 }
 
-.App-logo {
+.app-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
 
-.App-header {
+.app-header {
   background-color: $black;
-  height: 150px;
+  height: 15em;
   padding: 20px;
   color: white;
 }
 
-.App-intro {
+.app-intro {
   font-size: large;
 }
 
-@keyframes App-logo-spin {
+.intro-desc {
+  font-size: 1.5rem;
+}
+
+.container {
+  margin: 3em auto
+}
+
+.data-input-label {
+  text-align: left;
+}
+
+.data-input-label::-webkit-input-placeholder::before {
+  content: "FIRST\000ASECOND\000ATHIRD";
+  color:red;
+}
+
+.data-input-label::-moz-placeholder::before {
+  content: "FIRST\000ASECOND\000ATHIRD";
+  color:red;
+}
+
+.data-input-label::-ms-input-placeholder::before {
+  content: "FIRST\000ASECOND\000ATHIRD";
+  color:red;
+}
+
+
+@keyframes app-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
