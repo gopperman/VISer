@@ -3,21 +3,32 @@ import React, { Component } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import SparkLine from './components/SparkLine';
-import * as data from './data/timeScalar.json';
+import { csvToArray } from './util/dataManipulation'
 
 class App extends Component {
   constructor() {
     super()
-    this.state = { rawData: 'put yer data here' }
-    
+    const rawData = 'Date,Value\n1/1/17,1\n1/2/17,2\n1/3/17,4\n1/4/17,8\n1/5/17,5\n1/6/17,4\n1/7/17,6\n1/8/17,9\n1/9/17,7\n1/10/17,7\n'
+    const parsedData = csvToArray(rawData)
+    this.state = { 
+      rawData: rawData,
+      parsedData: parsedData
+    }
+
+
     this.textAreaUpdate = this.textAreaUpdate.bind(this)
   }
 
   textAreaUpdate(event) {
-    this.setState({ rawData: event.target.value })
+    const val = event.target.value
+
+    this.setState({ 
+      rawData: val,
+      parsedData: csvToArray(val)
+    })
   }
 
-  componentShouldUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps, nextState) {
     return this.state.rawData !== nextState.rawData
   }
 
@@ -28,7 +39,7 @@ class App extends Component {
         <div className="container">
           <p>All right, let's make some charts. Paste your date into this handy-dandy box, seperated by commas:</p>
           <textarea id="data-input" onChange={this.textAreaUpdate}>{this.state.rawData}</textarea>
-	        <SparkLine data={data.default} />
+	        <SparkLine data={this.state.parsedData} />
         </div>
         <Footer />
       </div>

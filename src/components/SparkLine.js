@@ -9,7 +9,7 @@ class SparkLine extends Component {
 
 	draw (el, d) {
 		const container = d3.select('#sparkline'),
-			width = parseInt(getWidth(container)),
+			width = parseInt(getWidth(container), 10),
 			height = width * .75,
 			x = timeScale(width),
 			y = verticalScale(height),
@@ -77,9 +77,16 @@ class SparkLine extends Component {
 			.call(d3.axisLeft(y));
 	}
 
+	componentDidUpdate(prevProps, prevState) {
+		if (prevProps.data !== this.props.data) {
+			document.getElementById('sparkline').innerHTML = ''
+			this.draw('#sparkline', this.props.data)
+		}
+		//this.draw('#sparkline', this.props.data)	
+	}
+
 	componentDidMount() {
 		this.draw('#sparkline', this.props.data)
-
 	}
 
 	render() {
