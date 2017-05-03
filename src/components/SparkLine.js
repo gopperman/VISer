@@ -2,26 +2,28 @@ import React, { Component, PropTypes } from 'react'
 import * as d3 from 'd3'
 import _ from 'lodash'
 import { timeScale, verticalScale } from '../util/scales'
-import { dimensions } from '../util/dimensions'
+import { getWidth, dimensions } from '../util/dimensions'
 import { slashedTime } from '../util/time'
 
 class SparkLine extends Component {
 
 	draw (el, d) {
-		// parse the date / time
-		// TODO: Let's detect the date format
-		const parseTime = slashedTime
+		const container = d3.select('#sparkline'),
+			width = parseInt(getWidth(container)),
+			height = width * .75,
+			x = timeScale(width),
+			y = verticalScale(height),
+			parseTime = slashedTime, // TODO: Detect date format
+			{ margin } = dimensions
+
+			this.setState( {width: width} )
 
 		let array = _.map(d, (v) => {
 			const time = parseTime(v.shift())
 			return [time, ...v]
 		})
-
-		const labels = array.shift()
-		const data = array
-		const x = timeScale
-		const y = verticalScale
-		const { margin, width, height } = dimensions
+		const labels = array.shift(),
+			data = array
 
 		const valueLine = d3.line()
 			/** 
@@ -40,7 +42,7 @@ class SparkLine extends Component {
 				return y(d[1]) 
 			})
 		
-		const svg = d3.select('#sparkline').append("svg")
+		const svg = container.append("svg")
 			.attr("width", width + margin.left + margin.right)
 			.attr("height", height + margin.top + margin.bottom)
 		.append("g")
@@ -77,11 +79,12 @@ class SparkLine extends Component {
 
 	componentDidMount() {
 		this.draw('#sparkline', this.props.data)
+
 	}
 
 	render() {
 		return (
-			<div className="sparkline" id="sparkline"></div>
+			<div className="sparkline graph" id="sparkline"></div>
 		)
 	}
 }
