@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import logo from '../logo2.svg'
+import logo from '../logo.svg'
 
 class Header extends Component {
   render() {
@@ -13,4 +13,3 @@ class Header extends Component {
 }
 
 export default Header
-export {logo}

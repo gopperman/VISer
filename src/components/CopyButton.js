@@ -3,9 +3,14 @@ import { exportSVG } from '../util/dom'
 
 class CopyButton extends Component {
 	copyToClipboard(e) {
-		e.target.classList.add('button__copy--clicked')
-		e.target.innerHTML = 'Code Copied'
-		exportSVG(e.target.getAttribute('data-source'))
+		const button = e.target
+		button.classList.add('button__copy--clicked')
+		button.innerHTML = 'Code Copied'
+		exportSVG(button.getAttribute('data-source'))
+		setTimeout(() => {
+			button.classList.remove('button__copy--clicked')
+			button.innerHTML = 'Copy Code to Clipboard'
+		}, 5000)
 	}
 
 	render() {
