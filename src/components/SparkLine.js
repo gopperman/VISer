@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import * as d3 from 'd3'
 import _ from 'lodash'
+import CopyButton from './CopyButton'
 import { timeScale, verticalScale } from '../util/scales'
 import { getWidth, dimensions } from '../util/dimensions'
 import { slashedTime } from '../util/time'
@@ -10,9 +11,8 @@ class SparkLine extends Component {
 	id = _.uniqueId('sparkline-')
 
 	draw () {
-		const d = this.props.data
-
 		const container = d3.select(`#${this.id}`),
+			d = this.props.data,
 			width = parseInt(getWidth(container), 10),
 			height = width * .75,
 			x = timeScale(width),
@@ -22,12 +22,10 @@ class SparkLine extends Component {
 
 			this.setState( {width: width} )
 
-		let array = _.map(d, (v) => {
+		const data = _.map(d, (v) => {
 			const time = parseTime(v.shift())
 			return [time, ...v]
 		})
-		const labels = array.shift(),
-			data = array
 
 		const valueLine = d3.line()
 			/** 
@@ -81,8 +79,10 @@ class SparkLine extends Component {
 			.call(d3.axisLeft(y))
 	}
 
-	copyToClipboard() {
-		exportSVG(`${this.id}`)
+	copyToClipboard(e) {
+		e.target.classList.add('button__copy--clicked')
+		//console.log(this.attr('data-source'))
+		exportSVG(e.target.getAttribute('data-source'))
 	}
 
 	componentDidUpdate(prevProps, prevState) {
@@ -101,9 +101,7 @@ class SparkLine extends Component {
 			<div className="graph__container">
 				<h3 className="graph__title">Spark Line</h3>
 				<div className="sparkline graph" id={this.id}></div>
-				<button className="sparkline__copy" onClick={this.copyToClipboard}>
-					Copy to Clipboard
-				</button>
+				<CopyButton source={this.id} />
 			</div>
 		)
 	}

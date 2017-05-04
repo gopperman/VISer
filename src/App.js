@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import SparkLine from './components/SparkLine'
+import Donut from './components/Donut'
 import { analyzeData, csvToArray } from './util/dataManipulation'
 
 class App extends Component {
@@ -39,7 +40,10 @@ class App extends Component {
     let charts = []
     if (this.state.isDate) {
       charts.push(<SparkLine data={this.state.parsedData} />)
+    } else {
+      charts.push(<Donut data={this.state.parsedData} />)
     }
+    return charts
   }
 
   dataFacts() {
