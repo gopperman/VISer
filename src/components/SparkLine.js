@@ -7,9 +7,10 @@ import { slashedTime } from '../util/time'
 import { exportSVG } from '../util/dom'
 
 class SparkLine extends Component {
+	id = _.uniqueId('sparkline_')
 
 	draw (el, d) {
-		const container = d3.select('#sparkline'),
+		const container = d3.select(`#${this.id}`),
 			width = parseInt(getWidth(container), 10),
 			height = width * .75,
 			x = timeScale(width),
@@ -79,25 +80,25 @@ class SparkLine extends Component {
 	}
 
 	copyToClipboard() {
-		exportSVG('sparkline')
+		exportSVG(`${this.id}`)
 	}
 
 	componentDidUpdate(prevProps, prevState) {
 		if (prevProps.data !== this.props.data) {
-			document.getElementById('sparkline').innerHTML = ''
-			this.draw('#sparkline', this.props.data)
+			document.getElementById(`${this.id}`).innerHTML = ''
+			this.draw(`${this.id}`, this.props.data)
 		}	
 	}
 
 	componentDidMount() {
-		this.draw('#sparkline', this.props.data)
+		this.draw(`#${this.id}`, this.props.data)
 	}
 
 	render() {
 		return (
 			<div className="graph__container">
 				<h3 className="graph__title">Spark Line</h3>
-				<div className="sparkline graph" id="sparkline"></div>
+				<div className="sparkline graph" id={this.id}></div>
 				<button className="sparkline__copy" onClick={this.copyToClipboard}>
 					Copy to Clipboard
 				</button>
