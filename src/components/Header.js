@@ -4,9 +4,8 @@ import logo from '../logo.svg';
 class Header extends Component {
   render() {
     return (
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Viser</h2>
+        <header className="app-header">
+          <h1>Viser</h1>
         </header>
     )
   }
