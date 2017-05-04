@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import logo from '../logo.svg';
+import logo from '../logo2.svg'
 
 class Header extends Component {
   render() {
     return (
         <header className="app-header">
-			<img src={logo} className="app-logo" alt="logo" />
+			<img src={require('../logo.svg')} className="app-logo" alt="logo" />
           <h1>Viser</h1>
         </header>
     )
@@ -13,3 +13,4 @@ class Header extends Component {
 }
 
 export default Header
+export {logo}
