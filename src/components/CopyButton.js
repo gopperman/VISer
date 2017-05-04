@@ -4,8 +4,7 @@ import { exportSVG } from '../util/dom'
 class CopyButton extends Component {
 	copyToClipboard(e) {
 		e.target.classList.add('button__copy--clicked')
-		e.target.innerHTML = 'Code Copied to Clipboard'
-		//console.log(this.attr('data-source'))
+		e.target.innerHTML = 'SVG Copied'
 		exportSVG(e.target.getAttribute('data-source'))
 	}
 
@@ -14,7 +13,7 @@ class CopyButton extends Component {
 			<button className="button__copy" 
 				onClick={this.copyToClipboard}
 				data-source={this.props.source}>
-				Copy Code to Clipboard
+				Copy SVG to Clipboard
 			</button>
 		)
 	}
