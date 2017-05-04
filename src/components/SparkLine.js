@@ -96,6 +96,7 @@ class SparkLine extends Component {
 	render() {
 		return (
 			<div className="graph__container">
+				<h3 className="graph__title">Spark Line</h3>
 				<div className="sparkline graph" id="sparkline"></div>
 				<button className="sparkline__copy" onClick={this.copyToClipboard}>
 					Copy to Clipboard

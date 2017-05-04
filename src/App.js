@@ -13,7 +13,8 @@ class App extends Component {
 
     this.state = { 
       rawData: rawData,
-      parsedData: parsedData
+      parsedData: parsedData,
+      ...analyzeData(parsedData)
     }
 
     this.textAreaUpdate = this.textAreaUpdate.bind(this)
@@ -25,14 +26,26 @@ class App extends Component {
 
     this.setState({ 
       rawData: val,
-      parsedData: parsedData
+      parsedData: parsedData,
+      ...analyzeData(parsedData)
     })
-
-    console.log(analyzeData(parsedData))
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     return this.state.rawData !== nextState.rawData
+  }
+
+  renderCharts() {
+    let charts = []
+    if (this.state.isDate) {
+      charts.push(<SparkLine data={this.state.parsedData} />)
+    }
+  }
+
+  dataFacts() {
+    const type = this.state.isDate ? 'time series' : 'dataset'
+
+    return `a ${type} with ${this.state.rows} rows and ${this.state.columns} columns`
   }
 
   render() {
@@ -41,9 +54,13 @@ class App extends Component {
         <Header />
         <div className="container">
           <p className="form-label">Paste your data into this field, seperated by commas:</p>
-          <textarea id="data-input" onChange={this.textAreaUpdate}>{this.state.rawData}</textarea>
+          <textarea id="data-input" onChange={this.textAreaUpdate} value={this.state.rawData}></textarea>
+          <h2>
+            <p>Cool! It looks like you have {this.dataFacts()}.</p>
+            <p>Let's see what we can do with that.</p>
+          </h2>
           <p className="select-graph">Select your graph:</p>
-	        <SparkLine data={this.state.parsedData} />
+	        {this.renderCharts()}
         </div>
         <Footer />
       </div>
