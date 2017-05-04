@@ -5,7 +5,7 @@ import CopyButton from './CopyButton'
 import { timeScale, verticalScale } from '../util/scales'
 import { getWidth, dimensions } from '../util/dimensions'
 import { slashedTime } from '../util/time'
-import { exportSVG } from '../util/dom'
+import { colors } from '../util/colors'
 
 class SparkLine extends Component {
 	id = _.uniqueId('sparkline-')
@@ -65,7 +65,7 @@ class SparkLine extends Component {
 			.data([data])
 			.attr("class", "sparkline")
 			.attr("d", valueLine)
-			.attr('stroke', 'steelblue')
+			.attr('stroke', colors[0])
 			.attr('stroke-width', 4)
 			.attr('fill', 'none')
 
@@ -77,12 +77,6 @@ class SparkLine extends Component {
 	 	// Add the Y Axis
 		svg.append("g")
 			.call(d3.axisLeft(y))
-	}
-
-	copyToClipboard(e) {
-		e.target.classList.add('button__copy--clicked')
-		//console.log(this.attr('data-source'))
-		exportSVG(e.target.getAttribute('data-source'))
 	}
 
 	componentDidUpdate(prevProps, prevState) {
@@ -108,7 +102,7 @@ class SparkLine extends Component {
 }
 
 SparkLine.propTypes = {
-	data: PropTypes.object.isRequired,
+	data: PropTypes.array.isRequired,
 }
 
 export default SparkLine

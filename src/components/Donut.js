@@ -3,7 +3,7 @@ import * as d3 from 'd3'
 import _ from 'lodash'
 import CopyButton from './CopyButton'
 import { getWidth } from '../util/dimensions'
-import { exportSVG } from '../util/dom'
+import { colors } from '../util/colors'
 
 class Donut extends Component {
 	id = _.uniqueId('donut-')
@@ -23,12 +23,11 @@ class Donut extends Component {
 				.value( (d) => { 
 					return d[1]
 				})
-
-		console.log(width)
-		console.log(this.props.data)
+		console.log('colors')
+		console.log(colors);
 		// Abstract Me!
 		const color = d3.scaleOrdinal()
-		    .range(["#AE5140","#2078B4","#DE2F27","#228739","#5F783B"])
+		    .range(colors)
 
 		const svg = container.append("svg")
 			.attr("width", width)
@@ -60,10 +59,6 @@ class Donut extends Component {
 			})
 	}
 
-	copyToClipboard() {
-		exportSVG(`#${this.id}`)
-	}
-
 	componentDidUpdate(prevProps, prevState) {
 		if (prevProps.data !== this.props.data) {
 			document.getElementById(`${this.id}`).innerHTML = ''
@@ -87,7 +82,7 @@ class Donut extends Component {
 }
 
 Donut.propTypes = {
-	data: PropTypes.object.isRequired,
+	data: PropTypes.array.isRequired,
 }
 
 export default Donut
