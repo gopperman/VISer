@@ -75,26 +75,31 @@ class SparkLine extends Component {
 
 	 	// Add the Y Axis
 		svg.append("g")
-			.call(d3.axisLeft(y));
+			.call(d3.axisLeft(y))
+	}
+
+	copyToClipboard() {
+		exportSVG('sparkline')
 	}
 
 	componentDidUpdate(prevProps, prevState) {
 		if (prevProps.data !== this.props.data) {
 			document.getElementById('sparkline').innerHTML = ''
 			this.draw('#sparkline', this.props.data)
-			exportSVG('sparkline', 'export__textarea')
 		}	
 	}
 
 	componentDidMount() {
 		this.draw('#sparkline', this.props.data)
-		exportSVG('sparkline', 'export__textarea')
 	}
 
 	render() {
 		return (
 			<div className="graph__container">
 				<div className="sparkline graph" id="sparkline"></div>
+				<button className="sparkline__copy" onClick={this.copyToClipboard}>
+					Copy to Clipboard
+				</button>
 			</div>
 		)
 	}

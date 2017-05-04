@@ -42,7 +42,6 @@ class App extends Component {
           <textarea id="data-input" onChange={this.textAreaUpdate}>{this.state.rawData}</textarea>
           <p className="select-graph">Select your graph:</p>
 	        <SparkLine data={this.state.parsedData} />
-          <Export />
         </div>
         <Footer />
       </div>
