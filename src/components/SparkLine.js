@@ -7,9 +7,11 @@ import { slashedTime } from '../util/time'
 import { exportSVG } from '../util/dom'
 
 class SparkLine extends Component {
-	id = _.uniqueId('sparkline_')
+	id = _.uniqueId('sparkline-')
 
-	draw (el, d) {
+	draw () {
+		const d = this.props.data
+
 		const container = d3.select(`#${this.id}`),
 			width = parseInt(getWidth(container), 10),
 			height = width * .75,
@@ -86,12 +88,12 @@ class SparkLine extends Component {
 	componentDidUpdate(prevProps, prevState) {
 		if (prevProps.data !== this.props.data) {
 			document.getElementById(`${this.id}`).innerHTML = ''
-			this.draw(`${this.id}`, this.props.data)
+			this.draw()
 		}	
 	}
 
 	componentDidMount() {
-		this.draw(`#${this.id}`, this.props.data)
+		this.draw()
 	}
 
 	render() {
