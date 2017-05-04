@@ -2,6 +2,32 @@
 @import 'styles/layout.scss';
 @import 'styles/inputs.scss';
 
+* {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp, small,
+strike, strong, sub, sup, tt, var, b, u, i, center,
+dl, dt, dd, ol, ul, li, fieldset, form, label,
+legend, table, caption, tbody, tfoot, thead,
+tr, th, td, article, aside, canvas, details,
+embed, figure, figcaption, footer, header,
+hgroup, menu, nav, output, ruby, section,
+summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  font-family: 'Work Sans', sans-serif;
+  letter-spacing: -0.2px;
+}
+
 .app {
   text-align: center;
 }
@@ -12,14 +38,15 @@
 }
 
 .app-header {
-  background-color: $black;
-  height: 15em;
-  padding: 20px;
-  color: white;
+  // background-color: $black;
+  padding: 3.5em;
+  color: #222;
+  text-align: center;
 }
 
-.app-intro {
-  font-size: large;
+h1 {
+  font-size:2.5rem;
+  // font-family: courier, monospace;
 }
 
 .intro-desc {
@@ -27,28 +54,36 @@
 }
 
 .container {
-  margin: 3em auto
+  margin: 0 auto
+}
+
+#data-input, #export__textarea {
+  font-size: 0.925rem;
+  padding: 15px 18px;
+  border: 3px solid #222;
+  letter-spacing: 0.2px;
+  line-height: 1.6;
+  font-family: 'Work Sans', sans-serif;
 }
 
 .data-input-label {
   text-align: left;
 }
 
-.data-input-label::-webkit-input-placeholder::before {
-  content: "FIRST\000ASECOND\000ATHIRD";
-  color:red;
+.form-label, .select-graph {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
 }
 
-.data-input-label::-moz-placeholder::before {
-  content: "FIRST\000ASECOND\000ATHIRD";
-  color:red;
+.select-graph {
+  margin: 4em 0 2em;
 }
 
-.data-input-label::-ms-input-placeholder::before {
-  content: "FIRST\000ASECOND\000ATHIRD";
-  color:red;
+.graph__container {
+  margin-bottom: 4em;
 }
-
 
 @keyframes app-logo-spin {
   from { transform: rotate(0deg); }
