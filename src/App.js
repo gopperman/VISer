@@ -60,8 +60,7 @@ class App extends Component {
           <p className="form-label">Paste your data into this field, seperated by commas:</p>
           <textarea id="data-input" onChange={this.textAreaUpdate} value={this.state.rawData}></textarea>
           <h2>
-            <p>Cool! It looks like you have {this.dataFacts()}.</p>
-            <p>Let's see what we can do with that.</p>
+            <p className="input-detection">Cool! It looks like you have <span className="data-facts">{this.dataFacts()}</span></p>
           </h2>
           <p className="select-graph">Select your graph:</p>
 	        {this.renderCharts()}
