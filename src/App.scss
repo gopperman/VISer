@@ -1,6 +1,7 @@
 @import 'styles/variables.scss';
 @import 'styles/layout.scss';
 @import 'styles/inputs.scss';
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600&subset=latin-ext');
 
 * {
   -moz-box-sizing: border-box;
@@ -33,8 +34,9 @@ summary, time, mark, audio, video {
 }
 
 .app-logo {
-  animation: App-logo-spin infinite 20s linear;
   height: 80px;
+  -webkit-animation: 0.5s draw linear forwards;
+  animation: 0.5s draw linear forwards;
 }
 
 .app-header {
@@ -44,7 +46,10 @@ summary, time, mark, audio, video {
 }
 
 h1 {
-  font-size:2.5rem;
+  font-size: 4.5rem;
+  color: black;
+  margin-top: -1.19em;
+  margin-left: 3px;
 }
 
 .intro-desc {
@@ -94,3 +99,5 @@ h1 {
 .data-input-label {
   text-align: left;
 }
+
+
