@@ -53,7 +53,6 @@ class Bar extends Component {
 			// Labels
 			bars.append('text')
 				.text(function(d) { return d[0] })
-				.attr('fill', 'white')
 				.attr('font-size', '12px')
 				.attr('class', 'name')
 				.attr('y', (d) => (y(d[0]) + y.bandwidth()*.6))

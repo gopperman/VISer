@@ -1,9 +1,9 @@
 const colors = [
-	"#15534C", // Green
-	"#E2E062", // Yellow
-	"#99C160", // Bright Green
-	"#30785B",
-	"#5D9D61"
+	"#90B1C0", // Blue
+	"#C2CCA1", // Green
+	"#FDCD80", // Yellow
+	"#FABA7D", // Orange
+	"#CCB4C8" // Lavender
 ]
 
 export { colors }
