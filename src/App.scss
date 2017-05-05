@@ -1,6 +1,7 @@
 @import 'styles/variables.scss';
 @import 'styles/layout.scss';
 @import 'styles/inputs.scss';
+@import 'styles/taco.scss';
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600&subset=latin-ext');
 
 * {
@@ -79,7 +80,7 @@ h1 {
   color: $gray;
   font-size: .9em;
   font-weight: normal;
-  margin-bottom: 1em;
+  margin: .25em 0 1em;
 
   a {
     color: $black;

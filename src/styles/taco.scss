@@ -1,0 +1,35 @@
+$module: taco;
+
+@-webkit-keyframes bounce {
+	0%, 100% {
+		-webkit-transform: translateY(0) rotate(10deg);
+		transform: translateY(0) rotate(10deg);
+	}
+
+	50% {
+		-webkit-transform: translateY(-30px) rotate(10deg);
+		transform: translateY(-30px) rotate(-10deg);
+	}
+}
+
+@keyframes bounce {
+	0%, 100% {
+		-webkit-transform: translateY(0) rotate(0deg);
+		transform: translateY(0) rotate(0deg);
+	}
+
+	50% {
+		-webkit-transform: translateY(-30px) rotate(-15deg);
+		transform: translateY(-30px) rotate(-15deg);
+	}
+}
+
+.#{$module} {
+	margin-top: 50px;
+
+	-webkit-animation: bounce 1.5s linear;
+    animation: bounce 1.5s linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+
+}
