@@ -2,8 +2,9 @@ import './App.css';
 import React, { Component } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import SparkLine from './components/SparkLine'
+import Bar from './components/Bar'
 import Donut from './components/Donut'
+import SparkLine from './components/SparkLine'
 import { analyzeData, csvToArray } from './util/dataManipulation'
 import { poll, timeScalar } from './data/sampleData'
 
@@ -66,7 +67,8 @@ class App extends Component {
   }
 
   results() {
-    if (this.state.rows > 0 ) {
+    // TODO: We could do a better job of checking for well-formed data
+    if (this.state.rows > 0 && this.state.columns > 1) {
       return (
         <div id="results">
           <h2 className="input-detection">
@@ -85,6 +87,7 @@ class App extends Component {
       charts.push(<SparkLine data={this.state.parsedData} />)
     } else {
       charts.push(<Donut data={this.state.parsedData} />)
+      charts.push(<Bar data={this.state.parsedData} />)
     }
     return charts
   }
