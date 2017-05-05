@@ -12,7 +12,7 @@ class App extends Component {
   constructor() {
     super()
 
-    const rawData = 'Paste Data Here',
+    const rawData = '',
       parsedData = csvToArray(rawData)
 
     this.state = { 
@@ -101,7 +101,11 @@ class App extends Component {
             <p>Paste your data into this field, seperated by commas:</p>
             <p className="label-sub">(Alternatively, you can load some <a onClick={this.loadData} data-set="poll">sample</a> <a onClick={this.loadData} data-set="timeScalar">data</a>)</p>
           </label>
-          <textarea id="data-input" onChange={this.textAreaUpdate} value={this.state.rawData}></textarea>
+          <textarea id="data-input" 
+            onChange={this.textAreaUpdate} 
+            value={this.state.rawData}
+            placeholder="Paste data here!">
+          </textarea>
           {this.results()}
         </div>
         <Footer />
