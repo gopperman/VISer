@@ -23,9 +23,7 @@ class Donut extends Component {
 				.value( (d) => { 
 					return d[1]
 				})
-		console.log('colors')
-		console.log(colors);
-		// Abstract Me!
+
 		const color = d3.scaleOrdinal()
 		    .range(colors)
 

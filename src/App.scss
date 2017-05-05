@@ -75,6 +75,22 @@ h1 {
   text-align: center;
 }
 
+.form-label .label-sub {
+  color: $gray;
+  font-size: .9em;
+  font-weight: normal;
+  margin-bottom: 1em;
+
+  a {
+    color: $black;
+    text-decoration: underline;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
 .select-graph {
   margin: 4em 0 2em;
 }

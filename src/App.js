@@ -5,20 +5,23 @@ import Footer from './components/Footer'
 import SparkLine from './components/SparkLine'
 import Donut from './components/Donut'
 import { analyzeData, csvToArray } from './util/dataManipulation'
+import { poll, timeScalar } from './data/sampleData'
 
 class App extends Component {
   constructor() {
     super()
-    const rawData = '1/1/17,1\n1/2/17,2\n1/3/17,4\n1/4/17,8\n1/5/17,5\n1/6/17,4\n1/7/17,6\n1/8/17,9\n1/9/17,7\n1/10/17,7',
+
+    const rawData = [],
       parsedData = csvToArray(rawData)
 
     this.state = { 
-      rawData: rawData,
+      rawData: [],
       parsedData: parsedData,
       ...analyzeData(parsedData)
     }
 
     this.textAreaUpdate = this.textAreaUpdate.bind(this)
+    this.loadData = this.loadData.bind(this)
   }
 
   textAreaUpdate(event) {
@@ -36,6 +39,46 @@ class App extends Component {
     return this.state.rawData !== nextState.rawData
   }
 
+  componentDidMount() {
+    // Let's cache some selectors
+    this.textArea = document.getElementById('data-input')
+  }
+
+  loadData(e) {
+    switch(e.target.getAttribute('data-set')) {
+      case 'poll':
+        this.textArea.value = poll
+        break
+      case 'timeScalar':
+        this.textArea.value = timeScalar
+        break
+    }
+
+    // Trigger onChange
+    const event = new Event('input', { bubbles: true });
+    this.textArea.dispatchEvent(event)
+  }
+
+  dataFacts() {
+    const type = this.state.isDate ? 'time series' : 'dataset'
+
+    return `a ${type} with ${this.state.rows} rows and ${this.state.columns} columns`
+  }
+
+  results() {
+    if (this.state.rows > 0 ) {
+      return (
+        <div id="results">
+          <h2 className="input-detection">
+              <p className="input-detection">Cool! It looks like you have <span className="data-facts">{this.dataFacts()}</span></p>
+          </h2>
+          <p className="select-graph">Here's what we made with it:</p>
+          {this.renderCharts()}
+        </div>
+      )
+    }
+  }
+
   renderCharts() {
     let charts = []
     if (this.state.isDate) {
@@ -46,24 +89,17 @@ class App extends Component {
     return charts
   }
 
-  dataFacts() {
-    const type = this.state.isDate ? 'time series' : 'dataset'
-
-    return `a ${type} with ${this.state.rows} rows and ${this.state.columns} columns`
-  }
-
   render() {
     return (
       <div className="App">
         <Header />
         <div className="container">
-          <p className="form-label">Paste your data into this field, seperated by commas:</p>
+          <label htmlFor="data-input" className="form-label">
+            <p>Paste your data into this field, seperated by commas:</p>
+            <p className="label-sub">(Alternatively, you can load some <a onClick={this.loadData} data-set="poll">sample</a> <a onClick={this.loadData} data-set="timeScalar">data</a>)</p>
+          </label>
           <textarea id="data-input" onChange={this.textAreaUpdate} value={this.state.rawData}></textarea>
-          <h2 className="input-detection">
-            <p className="input-detection">Cool! It looks like you have <span className="data-facts">{this.dataFacts()}</span></p>
-          </h2>
-          <p className="select-graph">Select your graph:</p>
-	        {this.renderCharts()}
+          {this.results()}
         </div>
         <Footer />
       </div>

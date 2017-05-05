@@ -6,5 +6,4 @@ const colors = [
 	"#5D9D61"
 ]
 
-console.log(colors);
 export { colors }
