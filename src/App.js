@@ -12,11 +12,11 @@ class App extends Component {
   constructor() {
     super()
 
-    const rawData = [],
+    const rawData = 'Paste Data Here',
       parsedData = csvToArray(rawData)
 
     this.state = { 
-      rawData: [],
+      rawData: rawData,
       parsedData: parsedData,
       ...analyzeData(parsedData)
     }
